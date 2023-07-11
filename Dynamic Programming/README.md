@@ -2,8 +2,9 @@ Here, we will apply some classic DP methods to implement several RL concepts inc
 
 You can find the functions required for this concept in `funcs.py` file.
 # 0. Preparing FrozenLakeEnv for DP#
-Unlike the RL agent that has no idea about the dynamics of the environment, DP assumes that the agent has full knowledge of the MDP. To do so, we add this line \n
+Unlike the RL agent that has no idea about the dynamics of the environment, DP assumes that the agent has full knowledge of the MDP. To do so, we add the line
 `self.P = P`
-to the original `frozenlake.py` file downloaded from OpenAI to make the one-step dynamics accessible to the agent.
+to the original `frozenlake.py` file downloaded from OpenAI to make the one-step dynamics accessible to the agent. In this way, for the object `env = FrozenLakeEnv(is_slippery=True)` we would have:\\
+`env.P[1][0]`
 # 1. Iterative Policy Evaluation#
 sd

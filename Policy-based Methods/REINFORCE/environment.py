@@ -3,7 +3,10 @@ import pygame
 import time
 
 class Environment():
-    def __init__(self, render=True, name='CartPole-v1'):
+    def __init__(self,
+                 render=True,
+                 name='CartPole-v1'):
+        
         self.name = name
         self.render = render
 
@@ -14,7 +17,10 @@ class Environment():
             env = gym.make(self.name)
         return env
     
-    def test_env(self, n_episodes=5, policy='random'):
+    def test_env(self,
+                 n_episodes=5,
+                 policy='random'):
+        
         env = self.create()
 
         for episode in range(1, n_episodes+1):

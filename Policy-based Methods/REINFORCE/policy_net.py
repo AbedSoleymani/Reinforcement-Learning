@@ -10,7 +10,10 @@ import pygame
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class PolicyNet(nn.Module):
-    def __init__(self, n_states=4, n_hidden=16, n_actions=2):
+    def __init__(self,
+                 n_states=4,
+                 n_hidden=16,
+                 n_actions=2):
         super(PolicyNet, self).__init__()
         self.n_states = n_states
         self.n_hidden = n_hidden
@@ -42,7 +45,14 @@ class PolicyNet(nn.Module):
         action = categorical_distribution.sample()
         return action.item(), categorical_distribution.log_prob(action)
     
-    def REINFORCE(self, env, optimizer, max_t=200, n_episodes=1000, gamma=1.0, print_every=100):
+    def REINFORCE(self,
+                  env,
+                  optimizer,
+                  max_t=200,
+                  n_episodes=1000,
+                  gamma=1.0,
+                  print_every=100):
+        
         scores_deque = deque(maxlen=print_every)
         scores = [] # for plotting the learning trend
         for episode in range(1, n_episodes+1):
@@ -88,12 +98,17 @@ class PolicyNet(nn.Module):
         return scores
     
     def plot(self, scores):
+        
         plt.plot(np.arange(1,len(scores)+1), scores)
         plt.xlabel('Number of episodes')
         plt.ylabel('Score')
         plt.show()
 
-    def validate(self, env, epochs=3, max_t=500):
+    def validate(self,
+                 env,
+                 epochs=3,
+                 max_t=500):
+        
         for episode in range(1, epochs+1):
             state = env.reset()[0]
             score = 0
